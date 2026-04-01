@@ -1,0 +1,11 @@
+# Deployment File Exclusions
+node_modules/
+.DS_Store
+*.sh
+docker-compose.yml
+Theme/bookcard/admin/
+Theme/bookcard/parts/
+Theme/bookcard/*.php
+!Theme/bookcard/functions.php # Keep if needed for assets, but actually static is better
+*.php
+preview-assets/ # Optional, if not used in static

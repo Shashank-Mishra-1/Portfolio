@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en" data-safeMod="false" data-autoHideScrollbar="true" data-safeModPageInAnimation="fadeIn" data-inAnimation="fadeInUp" data-outAnimation="fadeOutDownBig" data-cover-h1-tune="0.85" data-cover-h2-tune="2.3" data-cover-h3-tune="0.6" data-cover-h3-span-tune="0.8">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Shashank Mishra | AI Engineer & Full-Stack Developer Portfolio</title>
+    <meta name="description" content="AI Engineer and Full-Stack Developer specializing in LLMs, Prompt Engineering, React.js, and Cloud Solutions. View projects like Urjotsav, DISGPT, and more.">
+    <meta name="keywords" content="Shashank Mishra, AI Engineer, Full Stack Developer, LLM, Prompt Engineering, React.js, Next.js, Portfolio">
+    <meta name="author" content="Shashank Mishra">
+    <link rel="canonical" href="https://Shashank-Mishra-1.github.io/Portfolio/">
+    
+    <!-- Original Theme Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Nixie+One|Raleway:200,800" rel="stylesheet">
+    
+    <!-- Original Theme CSS -->
+    <link rel="stylesheet" href="Theme/bookcard/css/normalize.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/animate.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/book.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/font-awesome.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/jquery.fancybox-1.3.4.css">
+    <link rel="stylesheet" href="Theme/bookcard/css/main.css">
+    <link rel="stylesheet" href="Theme/bookcard/style.css">
+
+    <!-- CSS Skin Placeholders with IDs for Customizer -->
+    <link id="cover-css" rel="stylesheet" href="Theme/bookcard/css/skins/cover/standart.css">
+    <link id="base-css" rel="stylesheet" href="Theme/bookcard/css/skins/base/clean.css">
+    <link id="paper-css" rel="stylesheet" href="Theme/bookcard/css/skins/paper-bg/cream-dust.css">
+    <link id="body-css" rel="stylesheet" href="Theme/bookcard/css/skins/body-bg/wood.css">
+
+    <style>
+        .cover { 
+            background-image: url('demo-images/cover.jpg'); 
+        }
+
+        #home h1 { 
+            font-family: 'Alfa Slab One', cursive !important;
+            color: #fff; 
+            text-transform: uppercase;
+        }
+
+        #home h2 {
+            font-family: 'Raleway', sans-serif !important;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .cover-caption {
+            font-family: 'Raleway', sans-serif;
+            color: #fff;
+        }
+
+        /* LIVE CUSTOMIZER STYLES */
+        #style-switcher {
+            position: fixed;
+            top: 0;
+            left: -260px;
+            width: 260px;
+            height: 100vh;
+            background: #fff;
+            z-index: 9999;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            font-family: 'Arial', sans-serif;
+        }
+        #style-switcher h4 {
+            margin: 25px 20px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .switcher-box {
+            padding: 0 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .switcher-box button {
+            background: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 5px 8px;
+            font-size: 11px;
+            color: #444;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .switcher-box button:hover {
+            background: #eaeaea;
+        }
+        .switcher-box button.active {
+            border-color: #222;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        #toggle-switcher {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 35px;
+            height: 35px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 0 4px 4px 0;
+            z-index: 99999;
+            transition: all 0.3s ease;
+        }
+        #toggle-switcher:hover {
+            background: rgba(0,0,0,0.95);
+        }
+        
+        #style-switcher.open ~ #toggle-switcher,
+        #style-switcher.open #toggle-switcher-inner {
+            left: 260px;
+        }
+        
+        #style-switcher.open {
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOGGLE BUTTON (outside panel so it's always visible) -->
+    <div id="toggle-switcher">&#8250;</div>
+
+    <!-- STYLE SWITCHER PANEL -->
+    <div id="style-switcher">
+        
+        <h4>COVER STYLE</h4>
+        <div class="switcher-box" data-target="cover">
+            <button data-val="standart" class="active">Standart</button>
+            <button data-val="modern">Modern</button>
+            <button data-val="deep">Deep</button>
+            <button data-val="retro">Retro</button>
+            <button data-val="fancy">Fancy</button>
+            <button data-val="future">Future</button>
+            <button data-val="neon">Neon</button>
+            <button data-val="fire">Fire</button>
+        </div>
+
+        <h4>BASE STYLE</h4>
+        <div class="switcher-box" data-target="base">
+            <button data-val="clean" class="active">Clean</button>
+            <button data-val="retro">Retro</button>
+            <button data-val="retro3d">Retro 3D</button>
+            <button data-val="modern">Modern</button>
+        </div>
+
+        <h4>PAPER BACKGROUND</h4>
+        <div class="switcher-box" data-target="paper">
+            <button data-val="blizzard">Blizzard</button>
+            <button data-val="cream-dust" class="active">Cream Dust</button>
+            <button data-val="grid">Grid</button>
+            <button data-val="groovepaper">Groovepaper</button>
+            <button data-val="hand-made-paper">Hand Made Paper</button>
+            <button data-val="light-paper-fibers">Light Paper Fibers</button>
+            <button data-val="lined-paper">Lined Paper</button>
+            <button data-val="paper">Paper</button>
+            <button data-val="project-paper">Project Paper</button>
+            <button data-val="rice-paper">Rice Paper</button>
+        </div>
+
+        <h4>BODY BACKGROUND</h4>
+        <div class="switcher-box" data-target="body">
+            <button data-val="stone">Stone</button>
+            <button data-val="grunge-wall">Grunge wall</button>
+            <button data-val="watercolor">Watercolor</button>
+            <button data-val="concrete">Concrete</button>
+            <button data-val="concrete-2">Concrete 2</button>
+            <button data-val="stone-blocks">Stone blocks</button>
+            <button data-val="bricks">Bricks</button>
+            <button data-val="bricks-light">Bricks light</button>
+            <button data-val="bricks-2">Bricks 2</button>
+            <button data-val="bricks-3">Bricks 3</button>
+            <button data-val="bricks-4">Bricks 4</button>
+            <button data-val="tiles">Tiles</button>
+            <button data-val="clouds">Clouds</button>
+            <button data-val="clouds-2">Clouds 2</button>
+            <button data-val="leather">Leather</button>
+            <button data-val="wood" class="active">Wood</button>
+            <button data-val="wood-2">Wood 2</button>
+            <button data-val="wood-3">Wood 3</button>
+            <button data-val="wood-4">Wood 4</button>
+            <button data-val="shattered">Shattered</button>
+            <button data-val="noisy-net">Noisy net</button>
+            <button data-val="grunge-wall-dark">Grunge wall dark</button>
+            <button data-val="linen">Linen</button>
+            <button data-val="woven">Woven</button>
+            <button data-val="mosaic">Mosaic</button>
+            <button data-val="carbon">Carbon</button>
+            <button data-val="metal-holes">Metal Holes</button>
+            <button data-val="ground">Ground</button>
+        </div>
+        
+        <div style="padding: 20px; font-size: 11px; color: #888; text-align: center;">
+            SHASHANK MISHRA — PORTFOLIO
+        </div>
+    </div>
+    <!-- END STYLE SWITCHER -->
+
+
+    <section class="main">
+        <div id="rm-container" class="rm-container rm-open">
+            <header id="header">
+                <nav>
+                    <ul class="nav">
+                        <li><a href='#/home'></a></li>
+                        <li class="current_page_item"><a href='#/resume'></a></li>
+                        <li><a href='#/portfolio'></a></li>
+                        <li><a href='#/contact'></a></li>
+                    </ul>
+                </nav>
+            </header>
+            
+            <div class="rm-wrapper">
+                <div class="rm-cover">
+                    <!-- FRONT COVER -->
+                    <div id="home" class="rm-front page">
+                        <div class="antiscroll-wrap">
+                            <div class="antiscroll-inner">
+                                <div class="cover">
+                                    <div class="cover-image-holder">
+                                        <img src="demo-images/cover.jpg" alt="Shashank Mishra">
+                                    </div>
+                                    <h1>SHASHANK MISHRA</h1>
+                                    <h2>AI Engineer & Full-Stack Developer</h2>
+                                    
+
+                                    
+                                    <h3><span style="color: #FFDE00;">I BUILD</span> AI-Driven Solutions</h3>
+                                    <h3><span style="color: #FFDE00;">I CREATE</span> Scalable Web Apps</h3>
+                                    <h3><span style="color: #FFDE00;">I WORK WITH</span> LLMs & Cloud</h3>
+                                    <h3><span style="color: #FFDE00;">FREELANCE</span> Available</h3>
+
+                                    <a class="rm-button-open ribbon" href="#/resume">
+                                        <span class="ribbon-stitches-top"></span>
+                                        <strong class="ribbon-content">OPEN</strong>
+                                        <span class="ribbon-stitches-bottom"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RESUME PAGE -->
+                    <div id="resume" class="rm-back page active">
+                        <div class="antiscroll-wrap">
+                            <div class="antiscroll-inner">
+                                <div class="content">
+                                    <h2 class="inner-page-title"><span>RESUME</span></h2>
+                                    
+                                    <h4 class="about-text">I am an <span class="label">AI Engineer</span> with proven experience in LLM training, fine-tuning, and prompt engineering, integrating AI/ML workflows into scalable applications.</h4>
+
+                                    <h3><span>EXPERIENCE</span></h3>
+
+                                    <div class="history-group">
+                                        <div class="history-unit">
+                                            <h4 class="work-time">Aug - Oct 2025</h4>
+                                            <div class="work-desc">
+                                                <h4>Gen AI Intern</h4>
+                                                <h5>EOTS – Sydney, Australia (Remote)</h5>
+                                                <p>Real-time video processing pipelines, AI/ML model integration, and cloud-based workflows with AWS media services.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="history-unit">
+                                            <h4 class="work-time">Jul - Sep 2025</h4>
+                                            <div class="work-desc">
+                                                <h4>Software Engineer Intern</h4>
+                                                <h5>GAO Tek Inc. – Toronto, Canada (Remote)</h5>
+                                                <p>Built client websites using WordPress, React.js, and Next.js with REST APIs and custom plugins.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="history-unit">
+                                            <h4 class="work-time">Dec 2024 - Jan 2025</h4>
+                                            <div class="work-desc">
+                                                <h4>Full-Stack Developer Intern</h4>
+                                                <h5>TNGS – Spain (Remote)</h5>
+                                                <p>Built MENN stack platform with data visualizations for player management and automated reports.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="history-unit">
+                                            <h4 class="work-time">Jan - Aug 2024</h4>
+                                            <div class="work-desc">
+                                                <h4>AI Engineer (Contract)</h4>
+                                                <h5>Freelance – California, USA (Remote)</h5>
+                                                <p>Prompt engineering, fine-tuning, and rubric-based evaluation with OpenAI research teams.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3><span>EDUCATION</span></h3>
+
+                                    <div class="history-group">
+                                        <div class="history-unit">
+                                            <h4 class="work-time">2022 - 2026</h4>
+                                            <div class="work-desc">
+                                                <h4>B.Tech in Computer Science</h4>
+                                                <h5>Prestige Institute (RGPV) — CGPA: 7.7</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3><span>SKILLS</span></h3>
+                                    
+                                    <div class="skill-group">
+                                        <div class="skill-unit">
+                                            <h4>React.js / Next.js / Node.js</h4>
+                                            <div class="bar" data-percent="90"><div class="progress"></div></div>
+                                        </div>
+                                        <div class="skill-unit">
+                                            <h4>Python / AI & LLMs</h4>
+                                            <div class="bar" data-percent="85"><div class="progress"></div></div>
+                                        </div>
+                                        <div class="skill-unit">
+                                            <h4>AWS / Docker / DevOps</h4>
+                                            <div class="bar" data-percent="75"><div class="progress"></div></div>
+                                        </div>
+                                        <div class="skill-unit">
+                                            <h4>MongoDB / MySQL</h4>
+                                            <div class="bar" data-percent="80"><div class="progress"></div></div>
+                                        </div>
+                                        <div class="skill-unit">
+                                            <h4>Prompt Engineering</h4>
+                                            <div class="bar" data-percent="92"><div class="progress"></div></div>
+                                        </div>
+                                    </div>
+
+                                    <h3><span>CERTIFICATIONS</span></h3>
+                                    <ul style="list-style: none; padding: 0; font-size: 0.9em; line-height: 2;">
+                                        <li>🏆 Certified Web Developer – Micro1 (2025)</li>
+                                        <li>☁️ Google Cloud – Professional Cloud Architect</li>
+                                        <li>🤖 Google Cloud Skill Boost – Gen AI & Prompt Design</li>
+                                        <li>💻 HackerRank – SQL & C++ Proficiency</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rm-overlay"></div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PAGE -->
+                <div id="portfolio" class="portfolio page rm-middle active">
+                    <div class="rm-inner">
+                        <div class="antiscroll-wrap">
+                            <div class="antiscroll-inner">
+                                <div class="content">
+                                    <h2 class="inner-page-title"><span>PORTFOLIO</span></h2>
+                                    
+                                    <ul id="filters">
+                                        <li class="current pf-all-items"><a href="#" data-filter="*">ALL</a></li>
+                                        <li><a href="#" data-filter=".web">WEB</a></li>
+                                        <li><a href="#" data-filter=".ai">AI</a></li>
+                                        <li><a href="#" data-filter=".hackathon">HACKATHON</a></li>
+                                    </ul>
+                                    
+                                    <div class="portfolio-items">
+                                        <!-- Urjotsav -->
+                                        <div class="hentry web">
+                                            <div class="media-box">
+                                                <img alt="Urjotsav Website" src="demo-images/urjotsav.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>Urjotsav Website</h4>
+                                            <p class="category">College Fest Platform</p>
+                                        </div>
+
+                                        <!-- AI LLM Dashboard -->
+                                        <div class="hentry ai">
+                                            <div class="media-box">
+                                                <img alt="AI Engineering" src="demo-images/ai-dashboard.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>LLM Evaluation Hub</h4>
+                                            <p class="category">Prompt Engineering & AI</p>
+                                        </div>
+
+                                        <!-- DISGPT -->
+                                        <div class="hentry ai">
+                                            <div class="media-box">
+                                                <img alt="DISGPT Bot" src="demo-images/disgpt.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>DISGPT Bot</h4>
+                                            <p class="category">AI-Powered Discord Bot</p>
+                                        </div>
+
+                                        <!-- Scholarship Portal -->
+                                        <div class="hentry web">
+                                            <div class="media-box">
+                                                <img alt="Scholarship Portal" src="demo-images/scholarship.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>Scholarship Portal</h4>
+                                            <p class="category">MERN Stack Web App</p>
+                                        </div>
+
+                                        <!-- Vcode Winner -->
+                                        <div class="hentry hackathon">
+                                            <div class="media-box">
+                                                <img alt="Vcode Hackathon" src="demo-images/vcode.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>Vcode Winner 🏆</h4>
+                                            <p class="category">Mentor-Mentee Platform</p>
+                                        </div>
+
+                                        <!-- Decathon Real Estate -->
+                                        <div class="hentry hackathon">
+                                            <div class="media-box">
+                                                <img alt="Real Estate Portal" src="demo-images/realestate.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>Decathon Runner-Up</h4>
+                                            <p class="category">Real Estate Portal</p>
+                                        </div>
+
+                                        <!-- TNGS Sports Analytics -->
+                                        <div class="hentry web">
+                                            <div class="media-box">
+                                                <img alt="Sports Analytics" src="demo-images/sports.png">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>Sports Analytics</h4>
+                                            <p class="category">TNGS Player Platform</p>
+                                        </div>
+
+                                        <!-- EOTS AI Pipeline -->
+                                        <div class="hentry ai">
+                                            <div class="media-box">
+                                                <img alt="EOTS Media Pipeline" src="demo-images/01.jpg">
+                                                <div class="mask">
+                                                    <a class="ajax" href="#"></a>
+                                                </div>
+                                            </div>
+                                            <h4>EOTS Media Pipeline</h4>
+                                            <p class="category">Real-time Video AI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rm-right">
+                    <!-- BACK COVER -->
+                    <div class="rm-front page">
+                    </div>
+                    
+                    <!-- CONTACT PAGE -->
+                    <div id="contact" class="rm-back page active">
+                        <div class="antiscroll-wrap">
+                            <div class="antiscroll-inner">
+                                <div class="content">
+                                    <h2 class="inner-page-title"><span>CONTACT</span></h2>
+                                    
+                                    <p>Feel free to reach out for collaborations, freelance work, or just to say hello.</p>
+
+                                    <h3><span>LET'S CONNECT</span></h3>
+                                    <ul class="social">
+                                        <li><a class="linkedin" target="_blank" title="LinkedIn" href="https://linkedin.com/in/shashank-link"></a></li>
+                                        <li><a class="github" target="_blank" title="GitHub" href="https://github.com/Shashank-Mishra-1"></a></li>
+                                        <li><a class="twitter" target="_blank" title="Twitter" href="#"></a></li>
+                                        <li><a class="instagram" target="_blank" title="Instagram" href="https://www.instagram.com/shashank.mx/"></a></li>
+                                        <li><a class="google" target="_blank" title="Email" href="mailto:shashankmishra2604@gmail.com"></a></li>
+                                    </ul>
+
+                                    <h3><span>DROP ME A LINE!</span></h3>
+                                    <div class="contact-form">
+                                        <div class="letter cf">
+                                            <div class="letter-info">
+                                                <div class="signature-box" style="margin-bottom: -15px; pointer-events: none; text-align: center;">
+                                                    <img src="demo-images/signature.png" alt="Signature" class="signature-img" style="max-width: 140px; opacity: 1; display: inline-block; margin: 0 auto;">
+                                                </div>
+                                                <h4>Shashank Mishra</h4>
+                                                <p>shashankmishra2604@gmail.com</p>
+                                                <p>+91 834-977-9774</p>
+                                                <p>- India</p>
+                                            </div>
+                                            <div class="stamp">
+                                                <img alt="Shashank Mishra" src="demo-images/stamp-image.png">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3><span>VOLUNTEER WORK</span></h3>
+                                    <p><strong>President – Cybersecurity Club</strong></p>
+                                    <p style="font-size: 0.85em; color: #666;">Led initiatives in ethical hacking workshops, mentored students in threat analysis & secure coding.</p>
+                                    
+                                    <p><strong>Technical Workshop Organizer</strong></p>
+                                    <p style="font-size: 0.85em; color: #666;">Conducted workshops on Linux, open-source development, and software packaging at college & city level.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rm-close"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P-Overlay and Loaders -->
+    <div class="p-overlay"></div>
+    <div class="loader"></div>
+
+    <!-- JS Assets -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="Theme/bookcard/js/modernizr.js"></script>
+    <script src="Theme/bookcard/js/jquery.address-1.5.min.js"></script>
+    <script src="Theme/bookcard/js/antiscroll.js"></script>
+    <script src="Theme/bookcard/js/jquery.fittext.js"></script>
+    <script src="Theme/bookcard/js/jquery.imagesloaded.min.js"></script>
+    <script src="Theme/bookcard/js/jquery.isotope.min.js"></script>
+    <script src="Theme/bookcard/js/jquery.fitvids.js"></script>
+    <script src="Theme/bookcard/js/jquery.validate.min.js"></script>
+    <script src="Theme/bookcard/js/jquery.fancybox-1.3.4.pack.js"></script>
+    <script src="Theme/bookcard/js/main.js"></script>
+    
+    <script>
+        $(function() {
+            // Force the book to open initially for the preview
+            setTimeout(function() {
+                var $container = $('#rm-container');
+                $container.removeClass('rm-closed').addClass('rm-open');
+            }, 500);
+
+            // Live Customizer Logic
+            $('#toggle-switcher').click(function() {
+                var $sw = $('#style-switcher');
+                $sw.toggleClass('open');
+                if ($sw.hasClass('open')) {
+                    $(this).html('&#8249;');
+                    $(this).css('left', '260px');
+                } else {
+                    $(this).html('&#8250;');
+                    $(this).css('left', '0px');
+                }
+            });
+
+            $('.switcher-box button').click(function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                
+                var target = $(this).parent().data('target');
+                var val = $(this).data('val');
+                var rootPath = 'Theme/bookcard/css/skins/';
+                
+                if (target === 'cover') {
+                    $('#cover-css').attr('href', rootPath + 'cover/' + val + '.css');
+                } else if (target === 'base') {
+                    $('#base-css').attr('href', rootPath + 'base/' + val + '.css');
+                } else if (target === 'paper') {
+                    $('#paper-css').attr('href', rootPath + 'paper-bg/' + val + '.css');
+                } else if (target === 'body') {
+                    $('#body-css').attr('href', rootPath + 'body-bg/' + val + '.css');
+                }
+            });
+            // Signature Background Removal script
+            function removeSignatureBackground() {
+                const sigs = document.querySelectorAll('.signature-img');
+                sigs.forEach(img => {
+                    if (img.dataset.processed) return;
+                    if (!img.complete) {
+                        img.onload = () => process(img);
+                        return;
+                    }
+                    process(img);
+                });
+
+                function process(img) {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = img.naturalWidth;
+                        canvas.height = img.naturalHeight;
+                        ctx.drawImage(img, 0, 0);
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const data = imageData.data;
+                        for (let i = 0; i < data.length; i += 4) {
+                            const avg = (data[i] + data[i+1] + data[i+2]) / 3;
+                            if (avg > 230) data[i+3] = 0;
+                        }
+                        ctx.putImageData(imageData, 0, 0);
+                        img.src = canvas.toDataURL();
+                        img.dataset.processed = "true";
+                    } catch(e) { console.error("Signature processing failed:", e); }
+                }
+            }
+            $(window).on('load', removeSignatureBackground);
+            
+        });
+    </script>
+</body>
+</html>
