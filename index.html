@@ -1,4 +1,4 @@
-x   <!doctype html>
+<!doctype html>
 <html lang="en" data-safeMod="false" data-autoHideScrollbar="true" data-safeModPageInAnimation="fadeIn" data-inAnimation="fadeInUp" data-outAnimation="fadeOutDownBig" data-cover-h1-tune="0.85" data-cover-h2-tune="2.3" data-cover-h3-tune="0.6" data-cover-h3-span-tune="0.8">
 
 <head>
@@ -221,14 +221,41 @@ x   <!doctype html>
             letter-spacing: 1px !important;
             text-shadow: none !important;
             transition: all 0.3s ease !important;
+            position: absolute !important;
+            top: auto !important;
+            bottom: 40px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 100 !important;
+            display: inline-block !important;
+            color: #ffffff !important;
+            text-align: center !important;
+            line-height: normal !important;
         }
         a.rm-button-open:hover {
-            transform: translateY(-3px);
+            transform: translateX(-50%) translateY(-3px) !important;
             box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6) !important;
         }
-        /* Hide old ribbon stitches */
-        .ribbon-stitches-top, .ribbon-stitches-bottom {
+        /* Eradicate all legacy ribbon pseudo-elements like the red triangles */
+        a.rm-button-open::before, a.rm-button-open::after {
             display: none !important;
+            content: none !important;
+        }
+        
+        /* Dark Gradient Overlay for Cover Readability */
+        .cover-image-holder::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.1) 40%, rgba(15, 23, 42, 0.8) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ensure Text is above Cover Overlay */
+        #home h1, #home h2, #home h3 {
+            position: relative;
+            z-index: 2;
         }
 
         /* 5. Resume & Skills Modernization */
@@ -405,7 +432,7 @@ x   <!doctype html>
 
 
     <section class="main">
-        <div id="rm-container" class="rm-container rm-open">
+        <div id="rm-container" class="rm-container">
             <header id="header">
                 <nav>
                     <ul class="nav">
@@ -437,10 +464,8 @@ x   <!doctype html>
                                     <h3><span style="color: #FFDE00;">I WORK WITH</span> LLMs & Cloud</h3>
                                     <h3><span style="color: #FFDE00;">FREELANCE</span> Available</h3>
 
-                                    <a class="rm-button-open ribbon" href="#/resume">
-                                        <span class="ribbon-stitches-top"></span>
-                                        <strong class="ribbon-content">OPEN</strong>
-                                        <span class="ribbon-stitches-bottom"></span>
+                                    <a class="rm-button-open" href="#/resume">
+                                        <strong>OPEN</strong>
                                     </a>
                                 </div>
                             </div>
@@ -741,12 +766,6 @@ x   <!doctype html>
     
     <script>
         $(function() {
-            // Force the book to open initially for the preview
-            setTimeout(function() {
-                var $container = $('#rm-container');
-                $container.removeClass('rm-closed').addClass('rm-open');
-            }, 500);
-
             // Live Customizer Logic
             $('#toggle-switcher').click(function() {
                 var $sw = $('#style-switcher');
