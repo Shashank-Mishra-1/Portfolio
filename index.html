@@ -33,7 +33,7 @@
 
     <style>
         .cover { 
-            background-image: url('demo-images/cover.jpg'); 
+            background-image: url('demo-images/Real_asset.png'); 
         }
 
         #home h1 { 
@@ -55,17 +55,7 @@
 
         /* LIVE CUSTOMIZER STYLES */
         #style-switcher {
-            position: fixed;
-            top: 0;
-            left: -260px;
-            width: 260px;
-            height: 100vh;
-            background: #fff;
-            z-index: 9999;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            overflow-y: auto;
-            transition: left 0.3s ease;
-            font-family: 'Arial', sans-serif;
+            display: none !important;
         }
         #style-switcher h4 {
             margin: 25px 20px 10px;
@@ -101,21 +91,7 @@
         }
         
         #toggle-switcher {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 35px;
-            height: 35px;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            text-align: center;
-            line-height: 35px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 0 4px 4px 0;
-            z-index: 99999;
-            transition: all 0.3s ease;
+            display: none !important;
         }
         #toggle-switcher:hover {
             background: rgba(0,0,0,0.95);
@@ -140,6 +116,72 @@
         body {
             background: radial-gradient(circle at center, #f8fafc, #cbd5e1) !important;
             font-family: 'Inter', sans-serif !important;
+            cursor: none !important;
+        }
+
+        /* =============================================
+           CUSTOM CURSOR SYSTEM
+           ============================================= */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            transition: width 0.15s, height 0.15s, background 0.15s;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999998;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+        .cursor-dot.hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 92, 246, 0.15);
+            mix-blend-mode: normal;
+        }
+        .cursor-ring.hover {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(139, 92, 246, 0.8);
+            background: rgba(139, 92, 246, 0.05);
+        }
+        .cursor-ring.clicking {
+            width: 30px;
+            height: 30px;
+            border-color: #8b5cf6;
+        }
+
+        /* Particle Trail Canvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999990;
+        }
+
+        /* Hide cursor globally */
+        *, *::before, *::after {
+            cursor: none !important;
+        }
+
+        /* Glow effect on the book on hover */
+        .rm-wrapper:hover {
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2), 0 0 80px rgba(59, 130, 246, 0.08) !important;
         }
 
         /* Clean "book" inner pages instead of heavy rustic textures */
@@ -277,7 +319,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.1) 40%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7) 0%, rgba(10, 10, 10, 0.1) 35%, rgba(10, 10, 10, 0.0) 50%, rgba(10, 10, 10, 0.5) 85%, rgba(10, 10, 10, 0.8) 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -382,6 +424,13 @@
 
 <body>
 
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- PARTICLE TRAIL CANVAS -->
+    <canvas id="particle-canvas"></canvas>
+
     <!-- TOGGLE BUTTON (outside panel so it's always visible) -->
     <div id="toggle-switcher">&#8250;</div>
 
@@ -482,7 +531,7 @@
                             <div class="antiscroll-inner">
                                 <div class="cover">
                                     <div class="cover-image-holder">
-                                        <img src="demo-images/cover.jpg" alt="Shashank Mishra">
+                                        <img src="demo-images/Real_asset.png" alt="Shashank Mishra">
                                     </div>
                                     <h1>SHASHANK MISHRA</h1>
                                     <h2>AI Engineer & Full-Stack Developer</h2>
@@ -853,6 +902,197 @@
             $(window).on('load', removeSignatureBackground);
             
         });
+    </script>
+
+    <!-- =============================================
+         MOTION ENGINE: Custom Cursor + Particles + 3D Tilt
+         ============================================= -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ---- CUSTOM CURSOR ----
+        const dot = document.querySelector('.cursor-dot');
+        const ring = document.querySelector('.cursor-ring');
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
+
+            // Spawn particles
+            spawnParticle(mouseX, mouseY);
+        });
+
+        // Smooth ring follow
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            ring.style.left = ringX + 'px';
+            ring.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // Hover detection for interactive elements
+        const hoverTargets = 'a, button, .portfolio-items .hentry, .social li, .rm-button-open, input, textarea';
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest(hoverTargets)) {
+                dot.classList.add('hover');
+                ring.classList.add('hover');
+            }
+        });
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest(hoverTargets)) {
+                dot.classList.remove('hover');
+                ring.classList.remove('hover');
+            }
+        });
+
+        // Click effect
+        document.addEventListener('mousedown', function() {
+            ring.classList.add('clicking');
+        });
+        document.addEventListener('mouseup', function() {
+            ring.classList.remove('clicking');
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', function() {
+            dot.style.opacity = '0';
+            ring.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', function() {
+            dot.style.opacity = '1';
+            ring.style.opacity = '1';
+        });
+
+
+        // ---- PARTICLE TRAIL SYSTEM ----
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let throttle = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particleColors = [
+            'rgba(139, 92, 246, 0.6)',   // Purple
+            'rgba(59, 130, 246, 0.5)',    // Blue
+            'rgba(96, 165, 250, 0.4)',    // Light Blue
+            'rgba(167, 139, 250, 0.5)',   // Lavender
+            'rgba(255, 255, 255, 0.3)',   // White
+        ];
+
+        function spawnParticle(x, y) {
+            throttle++;
+            if (throttle % 3 !== 0) return; // Throttle: spawn every 3rd move
+            if (particles.length > 60) return; // Cap particles
+
+            particles.push({
+                x: x,
+                y: y,
+                size: Math.random() * 4 + 2,
+                speedX: (Math.random() - 0.5) * 1.5,
+                speedY: (Math.random() - 0.5) * 1.5 - 0.5,
+                color: particleColors[Math.floor(Math.random() * particleColors.length)],
+                life: 1.0,
+                decay: Math.random() * 0.02 + 0.015
+            });
+        }
+
+        function updateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.life -= p.decay;
+                p.size *= 0.98;
+
+                if (p.life <= 0 || p.size < 0.5) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.life;
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            requestAnimationFrame(updateParticles);
+        }
+        updateParticles();
+
+
+        // ---- 3D TILT EFFECT ON BOOK ----
+        const book = document.querySelector('.rm-wrapper');
+        if (book) {
+            const container = document.querySelector('.main');
+            if (container) {
+                container.addEventListener('mousemove', function(e) {
+                    const rect = book.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const rotateX = ((e.clientY - centerY) / rect.height) * -6;
+                    const rotateY = ((e.clientX - centerX) / rect.width) * 6;
+
+                    book.style.transition = 'transform 0.1s ease-out';
+                    book.style.transform = 'perspective(1200px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+                });
+
+                container.addEventListener('mouseleave', function() {
+                    book.style.transition = 'transform 0.6s ease';
+                    book.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+                });
+            }
+        }
+
+
+        // ---- MAGNETIC HOVER on OPEN button ----
+        const openBtn = document.querySelector('.rm-button-open');
+        if (openBtn) {
+            openBtn.addEventListener('mousemove', function(e) {
+                const rect = openBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                openBtn.style.transform = 'translateX(calc(-50% + ' + (x * 0.3) + 'px)) translateY(' + (y * 0.3) + 'px)';
+            });
+            openBtn.addEventListener('mouseleave', function() {
+                openBtn.style.transform = 'translateX(-50%)';
+            });
+        }
+
+
+        // ---- MAGNETIC HOVER on Social Icons ----
+        document.querySelectorAll('.social li a').forEach(function(icon) {
+            icon.addEventListener('mousemove', function(e) {
+                const rect = icon.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                icon.style.transform = 'translateY(-5px) translate(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px)';
+            });
+            icon.addEventListener('mouseleave', function() {
+                icon.style.transform = 'translateY(0)';
+            });
+        });
+
+    })();
     </script>
 </body>
 </html>
